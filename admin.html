@@ -3,135 +3,158 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>만종감리교회 - 목사님 관리자</title>
 
 <style>
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  margin:0;
-  background:#f7f5ef;
-  color:#222;
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-  font-size:20px;
-  line-height:1.7;
+body {
+  margin: 0;
+  background: #f7f5ef;
+  color: #222;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    sans-serif;
+  font-size: 20px;
+  line-height: 1.7;
 }
 
-header{
-  background:#5d6f52;
-  color:#fff;
-  text-align:center;
-  padding:24px 18px;
+header {
+  background: #5d6f52;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
 }
 
-h1{
-  font-size:31px;
-  margin:0;
+header h1 {
+  margin: 0;
+  font-size: 32px;
 }
 
-.container{
-  max-width:700px;
-  margin:auto;
-  padding:25px 18px 50px;
+header p {
+  margin: 5px 0 0;
+  font-size: 18px;
 }
 
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:24px;
-  margin:16px 0;
-  box-shadow:0 2px 9px #0001;
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 30px 18px 60px;
 }
 
-label{
-  font-weight:800;
-  display:block;
-  margin:12px 0 7px;
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 7px;
+  font-weight: 700;
 }
 
 input,
 select,
-textarea{
-  width:100%;
-  padding:14px;
-  border:1px solid #bbb;
-  border-radius:10px;
-  font:inherit;
+textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  font-size: 19px;
+  font-family: inherit;
 }
 
-textarea{
-  min-height:240px;
-  resize:vertical;
+textarea {
+  min-height: 280px;
+  resize: vertical;
 }
 
-button{
-  border:0;
-  border-radius:10px;
-  padding:13px 20px;
-  font-size:19px;
-  font-weight:800;
-  cursor:pointer;
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 14px 22px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.primary{
-  background:#5d6f52;
-  color:#fff;
-  margin-top:14px;
+.primary {
+  margin-top: 20px;
+  background: #5d6f52;
+  color: white;
 }
 
-.secondary{
-  background:#e4e8df;
-  margin-top:10px;
+.secondary {
+  margin-top: 12px;
+  background: #e5e8e1;
+  color: #333;
 }
 
-.error{
-  color:#a33;
-  font-size:17px;
-  word-break:break-word;
+.error {
+  color: #b13b32;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
-.ok{
-  color:#49623f;
-  font-weight:700;
+.success {
+  color: #4d6943;
+  font-weight: 700;
 }
 
-.hidden{
-  display:none;
+.hidden {
+  display: none;
 }
 
-.small{
-  font-size:15px;
-  color:#666;
+.small {
+  color: #777;
+  font-size: 15px;
 }
-
 </style>
+
 </head>
 
 
 <body>
 
+
 <header>
-  <h1>
-    만종감리교회<br>
-    목사님 관리자
-  </h1>
+
+  <h1>만종감리교회</h1>
+
+  <p>목사님 관리자</p>
+
 </header>
 
 
 <main class="container">
 
 
-<!-- 로그인 화면 -->
+<!-- 로그인 -->
 
 <section id="loginCard" class="card">
 
   <h2>관리자 로그인</h2>
 
-  <label>이메일</label>
+
+  <label for="email">
+    이메일
+  </label>
 
   <input
     id="email"
@@ -141,7 +164,9 @@ button{
   >
 
 
-  <label>비밀번호</label>
+  <label for="password">
+    비밀번호
+  </label>
 
   <input
     id="password"
@@ -152,14 +177,17 @@ button{
 
 
   <button
-    class="primary"
     id="loginBtn"
+    class="primary"
   >
     로그인
   </button>
 
 
-  <p id="loginMsg" class="error"></p>
+  <p
+    id="loginMsg"
+    class="error"
+  ></p>
 
 </section>
 
@@ -167,35 +195,42 @@ button{
 
 <!-- 관리자 화면 -->
 
-<section id="adminCard" class="card hidden">
+<section
+  id="adminCard"
+  class="card hidden"
+>
 
   <h2>목사님 설명 입력</h2>
 
 
-  <label>창세기 장</label>
+  <label for="chapter">
+    창세기 장
+  </label>
 
   <select id="chapter"></select>
 
 
-  <label>목사님 설명</label>
+  <label for="text">
+    목사님 설명
+  </label>
 
   <textarea
     id="text"
-    placeholder="선택한 장의 목사님 설명을 입력해 주세요."
+    placeholder="선택한 장에 대한 목사님 설명을 입력해 주세요."
   ></textarea>
 
 
   <button
-    class="primary"
     id="saveBtn"
+    class="primary"
   >
     저장하기
   </button>
 
 
   <button
-    class="secondary"
     id="logoutBtn"
+    class="secondary"
   >
     로그아웃
   </button>
@@ -205,7 +240,8 @@ button{
 
 
   <p class="small">
-    저장하면 성도님용 페이지에서 해당 장을 열 때 바로 표시됩니다.
+    저장된 설명은 성도님용 '오늘의 창세기' 페이지에서
+    해당 장을 선택하면 표시됩니다.
   </p>
 
 </section>
@@ -217,9 +253,10 @@ button{
 
 <script type="module">
 
-/* =========================
-   Firebase 불러오기
-========================= */
+
+/* =====================================================
+   Firebase SDK
+===================================================== */
 
 import {
   initializeApp
@@ -244,79 +281,108 @@ import {
 
 
 
-/* =========================
+/* =====================================================
    Firebase 설정
-========================= */
+===================================================== */
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyCSDusP0m2Mbg2wNg7r6duA_T5stDH7YKU",
+  apiKey: "AIzaSyCSDusP0m2Mbg2wNg7r6duA_T5stDH7YKU",
 
-  authDomain:
-    "manjong-genesis.firebaseapp.com",
+  authDomain: "manjong-genesis.firebaseapp.com",
 
-  projectId:
-    "manjong-genesis",
+  projectId: "manjong-genesis",
 
-  storageBucket:
-    "manjong-genesis.firebasestorage.app",
+  storageBucket: "manjong-genesis.firebasestorage.app",
 
-  messagingSenderId:
-    "1017583422703",
+  messagingSenderId: "1017583422703",
 
-  appId:
-    "1:1017583422703:web:6c7d1ebec3850a8b92df1"
+  appId: "1:1017583422703:web:6c7d1ebec3850a8b92df1a"
 
 };
 
 
 
-/* =========================
-   Firebase 시작
-========================= */
+/* =====================================================
+   Firebase 초기화
+===================================================== */
 
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+const app =
+  initializeApp(firebaseConfig);
 
 
+const auth =
+  getAuth(app);
 
-/* =========================
+
+const db =
+  getFirestore(app);
+
+
+
+/* =====================================================
    화면 요소
-========================= */
+===================================================== */
 
 const loginCard =
   document.getElementById("loginCard");
 
+
 const adminCard =
   document.getElementById("adminCard");
+
+
+const email =
+  document.getElementById("email");
+
+
+const password =
+  document.getElementById("password");
+
+
+const loginBtn =
+  document.getElementById("loginBtn");
+
+
+const loginMsg =
+  document.getElementById("loginMsg");
+
 
 const chapter =
   document.getElementById("chapter");
 
+
 const text =
   document.getElementById("text");
 
-const loginMsg =
-  document.getElementById("loginMsg");
+
+const saveBtn =
+  document.getElementById("saveBtn");
+
+
+const logoutBtn =
+  document.getElementById("logoutBtn");
+
 
 const status =
   document.getElementById("status");
 
 
 
-/* =========================
-   창세기 1~50장 만들기
-========================= */
+/* =====================================================
+   창세기 1~50장 선택 목록
+===================================================== */
 
-for(let i = 1; i <= 50; i++){
+for (
+  let i = 1;
+  i <= 50;
+  i++
+) {
 
   const option =
     document.createElement("option");
 
-  option.value = i;
+  option.value = String(i);
 
   option.textContent =
     "창세기 " + i + "장";
@@ -327,47 +393,58 @@ for(let i = 1; i <= 50; i++){
 
 
 
-/* =========================
-   설명 불러오기
-========================= */
+/* =====================================================
+   목사님 설명 불러오기
+===================================================== */
 
-async function loadText(){
+async function loadText() {
 
-  try{
+  try {
 
-    const snap =
-      await getDoc(
-        doc(
-          db,
-          "pastorExplanations",
-          String(chapter.value)
-        )
+    const chapterNumber =
+      chapter.value;
+
+
+    const reference =
+      doc(
+        db,
+        "pastorExplanations",
+        chapterNumber
       );
 
 
-    if(snap.exists()){
+    const snap =
+      await getDoc(reference);
+
+
+    if (snap.exists()) {
 
       text.value =
         snap.data().text || "";
 
-    }else{
+    } else {
 
       text.value = "";
 
     }
 
+
     status.textContent = "";
 
+    status.className = "";
 
-  }catch(e){
+  }
 
-    status.className = "error";
+  catch (error) {
+
+    status.className =
+      "error";
 
     status.textContent =
-      "설명을 불러오지 못했습니다: "
-      + e.code
-      + " / "
-      + e.message;
+      "설명을 불러오지 못했습니다.\n\n"
+      + error.code
+      + "\n"
+      + error.message;
 
   }
 
@@ -375,9 +452,9 @@ async function loadText(){
 
 
 
-/* =========================
+/* =====================================================
    장 선택
-========================= */
+===================================================== */
 
 chapter.addEventListener(
   "change",
@@ -386,28 +463,24 @@ chapter.addEventListener(
 
 
 
-/* =========================
+/* =====================================================
    로그인
-========================= */
+===================================================== */
 
-document
-  .getElementById("loginBtn")
-  .onclick = async () => {
+loginBtn.addEventListener(
+  "click",
+  async function () {
 
     loginMsg.textContent = "";
 
+    const emailValue =
+      email.value.trim();
 
-    const email =
-      document.getElementById("email")
-        .value
-        .trim();
-
-    const password =
-      document.getElementById("password")
-        .value;
+    const passwordValue =
+      password.value;
 
 
-    if(!email){
+    if (!emailValue) {
 
       loginMsg.textContent =
         "이메일을 입력해 주세요.";
@@ -417,7 +490,7 @@ document
     }
 
 
-    if(!password){
+    if (!passwordValue) {
 
       loginMsg.textContent =
         "비밀번호를 입력해 주세요.";
@@ -427,53 +500,52 @@ document
     }
 
 
-    try{
+    try {
 
       await signInWithEmailAndPassword(
         auth,
-        email,
-        password
-      );
-
-
-    }catch(e){
-
-      /*
-        로그인 실패 원인을
-        정확하게 표시합니다.
-      */
-
-      loginMsg.textContent =
-        "로그인 실패\n"
-        + e.code
-        + " / "
-        + e.message;
-
-      console.error(
-        "Firebase 로그인 오류:",
-        e
+        emailValue,
+        passwordValue
       );
 
     }
 
-};
+    catch (error) {
+
+      loginMsg.textContent =
+        "로그인 실패\n\n"
+        + error.code
+        + "\n"
+        + error.message;
+
+      console.error(
+        "Firebase 로그인 오류:",
+        error
+      );
+
+    }
+
+  }
+);
 
 
 
-/* =========================
+/* =====================================================
    설명 저장
-========================= */
+===================================================== */
 
-document
-  .getElementById("saveBtn")
-  .onclick = async () => {
+saveBtn.addEventListener(
+  "click",
+  async function () {
 
+    const chapterNumber =
+      chapter.value;
 
-    const value =
+    const explanation =
       text.value.trim();
 
 
-    if(!value){
+    if (!explanation) {
 
       status.className =
         "error";
@@ -486,82 +558,86 @@ document
     }
 
 
-    try{
+    try {
 
       await setDoc(
 
         doc(
           db,
           "pastorExplanations",
-          String(chapter.value)
+          chapterNumber
         ),
 
         {
-          text:value,
-          updatedAt:serverTimestamp()
+          text: explanation,
+          updatedAt: serverTimestamp()
         }
 
       );
 
 
       status.className =
-        "ok";
+        "success";
 
       status.textContent =
-        chapter.value
+        "창세기 "
+        + chapterNumber
         + "장 설명이 저장되었습니다.";
 
+    }
 
-    }catch(e){
+    catch (error) {
 
       status.className =
         "error";
 
       status.textContent =
-        "저장하지 못했습니다.\n"
-        + e.code
-        + " / "
-        + e.message;
+        "저장하지 못했습니다.\n\n"
+        + error.code
+        + "\n"
+        + error.message;
 
       console.error(
         "Firestore 저장 오류:",
-        e
+        error
       );
 
     }
 
-};
+  }
+);
 
 
 
-/* =========================
+/* =====================================================
    로그아웃
-========================= */
+===================================================== */
 
-document
-  .getElementById("logoutBtn")
-  .onclick = () => {
+logoutBtn.addEventListener(
+  "click",
+  async function () {
 
-    signOut(auth);
+    await signOut(auth);
 
-  };
+  }
+);
 
 
 
-/* =========================
+/* =====================================================
    로그인 상태 확인
-========================= */
+===================================================== */
 
 onAuthStateChanged(
   auth,
-  async (user) => {
+  async function (user) {
 
-
-    if(user){
+    if (user) {
 
       loginCard
         .classList
         .add("hidden");
+
 
       adminCard
         .classList
@@ -570,12 +646,14 @@ onAuthStateChanged(
 
       await loadText();
 
+    }
 
-    }else{
+    else {
 
       loginCard
         .classList
         .remove("hidden");
+
 
       adminCard
         .classList
@@ -584,10 +662,12 @@ onAuthStateChanged(
     }
 
   }
-
 );
+
 
 </script>
 
+
 </body>
+
 </html>
