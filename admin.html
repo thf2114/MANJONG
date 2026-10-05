@@ -2,235 +2,137 @@
 <html lang="ko">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1"
->
-
-<title>
-  만종감리교회 - 관리자
-</title>
-
+<title>만종감리교회 - 목사님 관리자</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
 
-
 body {
-
   margin: 0;
-
   background: #f7f5ef;
-
   color: #222;
-
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "Apple SD Gothic Neo",
     "Noto Sans KR",
     sans-serif;
-
-  font-size: 23px;
-
+  font-size: 24px;
   line-height: 1.7;
-
 }
-
 
 header {
-
   background: #5d6f52;
-
   color: white;
-
   text-align: center;
-
-  padding: 30px 20px;
-
+  padding: 32px 20px;
 }
-
 
 header h1 {
-
   margin: 0;
-
-  font-size: 34px;
-
+  font-size: 38px;
   line-height: 1.4;
-
 }
-
 
 .container {
-
-  max-width: 800px;
-
+  max-width: 850px;
   margin: auto;
-
   padding: 30px 20px 60px;
-
 }
-
 
 .card {
-
   background: white;
-
   border-radius: 18px;
-
   padding: 30px;
-
   box-shadow: 0 2px 10px #0001;
-
 }
 
+h2 {
+  font-size: 30px;
+  margin-top: 0;
+}
 
 label {
-
   display: block;
-
-  font-size: 25px;
-
+  font-size: 26px;
   font-weight: 900;
-
-  margin:
-
-    20px 0 10px;
-
+  margin: 25px 0 10px;
 }
-
 
 select {
-
   width: 100%;
-
-  padding: 16px;
-
-  border:
-
-    2px solid #bbb;
-
+  padding: 17px;
+  border: 2px solid #bbb;
   border-radius: 12px;
-
-  font-size: 23px;
-
+  font-size: 24px;
   background: white;
-
 }
-
 
 textarea {
-
   width: 100%;
-
   min-height: 300px;
-
   padding: 18px;
-
-  border:
-
-    2px solid #bbb;
-
+  border: 2px solid #bbb;
   border-radius: 12px;
-
-  font-size: 23px;
-
+  font-size: 24px;
   line-height: 1.8;
-
   font-family: inherit;
-
   resize: vertical;
-
 }
-
-
-button {
-
-  border: none;
-
-  border-radius: 12px;
-
-  padding: 17px 25px;
-
-  font-size: 23px;
-
-  font-weight: 900;
-
-  cursor: pointer;
-
-}
-
-
-.save-btn {
-
-  width: 100%;
-
-  margin-top: 25px;
-
-  background: #5d6f52;
-
-  color: white;
-
-}
-
-
-.status {
-
-  margin-top: 18px;
-
-  font-size: 22px;
-
-  font-weight: 800;
-
-}
-
-
-.success {
-
-  color: #49623f;
-
-}
-
-
-.error {
-
-  color: #a33;
-
-  white-space: pre-wrap;
-
-}
-
 
 .hint {
-
-  font-size: 19px;
-
   color: #777;
-
-  margin-top: 7px;
-
+  font-size: 19px;
+  margin-bottom: 8px;
 }
 
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 18px 25px;
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.save-btn {
+  width: 100%;
+  margin-top: 28px;
+  background: #5d6f52;
+  color: white;
+}
+
+.status {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.success {
+  color: #49623f;
+}
+
+.error {
+  color: #a33;
+  white-space: pre-wrap;
+}
 
 @media (max-width: 600px) {
-
   body {
-    font-size: 21px;
+    font-size: 22px;
   }
 
   header h1 {
-    font-size: 30px;
+    font-size: 32px;
   }
 
   .container {
-    padding: 20px 14px;
+    padding: 20px 14px 50px;
   }
 
   .card {
@@ -238,67 +140,47 @@ button {
   }
 
   label {
-    font-size: 23px;
+    font-size: 24px;
   }
 
   select,
   textarea {
-    font-size: 21px;
+    font-size: 22px;
   }
-
 }
-
 </style>
 
 </head>
 
-
 <body>
 
-
 <header>
-
   <h1>
     만종감리교회<br>
     목사님 관리자
   </h1>
-
 </header>
-
-
 
 <main class="container">
 
-
 <section class="card">
 
-
-<h2>
-  창세기 말씀 관리
-</h2>
-
-
+<h2>창세기 말씀 관리</h2>
 
 <label for="chapter">
   창세기 장 선택
 </label>
 
-
-<select id="chapter">
-
-</select>
-
+<select id="chapter"></select>
 
 
 <label for="bibleText">
   📖 말씀
 </label>
 
-
 <div class="hint">
   해당 장의 성경 말씀을 입력해 주세요.
 </div>
-
 
 <textarea
   id="bibleText"
@@ -306,22 +188,18 @@ button {
 ></textarea>
 
 
-
 <label for="pastorText">
   💬 목사님 설명
 </label>
-
 
 <div class="hint">
   해당 장에 대한 목사님의 설명을 입력해 주세요.
 </div>
 
-
 <textarea
   id="pastorText"
   placeholder="목사님 설명을 입력해 주세요."
 ></textarea>
-
 
 
 <button
@@ -331,23 +209,17 @@ button {
   저장하기
 </button>
 
-
-
 <p
   id="status"
   class="status"
 ></p>
 
-
 </section>
-
 
 </main>
 
 
-
 <script type="module">
-
 
 import {
   initializeApp
@@ -366,9 +238,6 @@ import {
 from
 "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-
-
-/* Firebase */
 
 const firebaseConfig = {
 
@@ -396,13 +265,9 @@ const firebaseConfig = {
 const app =
   initializeApp(firebaseConfig);
 
-
 const db =
   getFirestore(app);
 
-
-
-/* 화면 */
 
 const chapter =
   document.getElementById("chapter");
@@ -420,46 +285,31 @@ const status =
   document.getElementById("status");
 
 
+/* 창세기 1~50장 */
 
-/* 1~50장 */
-
-for (
-  let i = 1;
-  i <= 50;
-  i++
-) {
+for (let i = 1; i <= 50; i++) {
 
   const option =
     document.createElement("option");
 
-  option.value =
-    i;
+  option.value = i;
 
   option.textContent =
     "창세기 " + i + "장";
 
   chapter.appendChild(option);
-
 }
 
 
-
-/* 기존 내용 불러오기 */
+/* 선택한 장의 기존 내용 불러오기 */
 
 async function loadChapter() {
 
-  bibleText.value =
-    "";
+  bibleText.value = "";
+  pastorText.value = "";
 
-  pastorText.value =
-    "";
-
-  status.textContent =
-    "";
-
-  status.className =
-    "status";
-
+  status.textContent = "";
+  status.className = "status";
 
   try {
 
@@ -470,26 +320,20 @@ async function loadChapter() {
         String(chapter.value)
       );
 
-
     const snap =
       await getDoc(ref);
-
 
     if (snap.exists()) {
 
       const data =
         snap.data();
 
-
       bibleText.value =
         data.bibleText || "";
 
-
       pastorText.value =
         data.pastorText || "";
-
     }
-
 
   } catch (error) {
 
@@ -497,18 +341,15 @@ async function loadChapter() {
       "status error";
 
     status.textContent =
-      "불러오기 실패\n"
-      + error.code
-      + "\n"
-      + error.message;
-
+      "불러오기 실패\n" +
+      error.code +
+      "\n" +
+      error.message;
   }
-
 }
 
 
-
-/* 장을 바꾸면 자동 불러오기 */
+/* 장을 바꾸면 내용 불러오기 */
 
 chapter.addEventListener(
   "change",
@@ -516,13 +357,11 @@ chapter.addEventListener(
 );
 
 
-
-/* 저장 */
+/* 저장하기 */
 
 saveBtn.addEventListener(
   "click",
   async () => {
-
 
     const bible =
       bibleText.value.trim();
@@ -530,11 +369,7 @@ saveBtn.addEventListener(
     const pastor =
       pastorText.value.trim();
 
-
-    if (
-      !bible &&
-      !pastor
-    ) {
+    if (!bible && !pastor) {
 
       status.className =
         "status error";
@@ -543,23 +378,16 @@ saveBtn.addEventListener(
         "말씀이나 설명을 입력해 주세요.";
 
       return;
-
     }
 
+    saveBtn.disabled = true;
 
-    saveBtn.disabled =
-      true;
-
-
-    status.className =
-      "status";
+    status.className = "status";
 
     status.textContent =
       "저장 중입니다...";
 
-
     try {
-
 
       await setDoc(
 
@@ -570,63 +398,44 @@ saveBtn.addEventListener(
         ),
 
         {
-
-          bibleText:
-            bible,
-
-          pastorText:
-            pastor,
-
-          updatedAt:
-            serverTimestamp()
-
+          bibleText: bible,
+          pastorText: pastor,
+          updatedAt: serverTimestamp()
         }
 
       );
 
-
       status.className =
         "status success";
 
-
       status.textContent =
-        "창세기 "
-        + chapter.value
-        + "장 내용이 저장되었습니다.";
-
+        "창세기 " +
+        chapter.value +
+        "장 내용이 저장되었습니다.";
 
     } catch (error) {
-
 
       status.className =
         "status error";
 
-
       status.textContent =
-        "저장 실패\n"
-        + error.code
-        + "\n"
-        + error.message;
-
+        "저장 실패\n" +
+        error.code +
+        "\n" +
+        error.message;
 
     }
 
-
-    saveBtn.disabled =
-      false;
-
+    saveBtn.disabled = false;
   }
 );
 
 
-
-/* 처음 실행 */
+/* 처음 열었을 때 */
 
 loadChapter();
 
-
 </script>
-
 
 </body>
 </html>
