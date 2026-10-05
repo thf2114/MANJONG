@@ -27,8 +27,6 @@ body {
   line-height: 1.8;
 }
 
-/* 상단 */
-
 header {
   background: #5d6f52;
   color: white;
@@ -54,15 +52,11 @@ header h1 {
   font-size: 20px;
 }
 
-/* 전체 */
-
 .container {
   max-width: 850px;
   margin: 0 auto;
   padding: 30px 20px 60px;
 }
-
-/* 카드 */
 
 .card {
   background: white;
@@ -72,16 +66,12 @@ header h1 {
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
-/* 제목 */
-
 .list-title {
   text-align: center;
   font-size: 32px;
   font-weight: 900;
   margin: 0 0 28px;
 }
-
-/* 장 목록 */
 
 #chapterList {
   display: grid;
@@ -104,13 +94,9 @@ header h1 {
   transform: scale(0.97);
 }
 
-/* 읽기 화면 */
-
 #reading {
   display: none;
 }
-
-/* 장 목록으로 */
 
 .back-btn {
   border: none;
@@ -124,15 +110,11 @@ header h1 {
   cursor: pointer;
 }
 
-/* 장 제목 */
-
 .chapter-title {
   font-size: 38px;
   font-weight: 900;
   margin-bottom: 25px;
 }
-
-/* 목사님 설명 */
 
 .section-title {
   font-size: 30px;
@@ -147,13 +129,9 @@ header h1 {
   line-height: 2;
 }
 
-/* 설명이 없을 때 */
-
 .empty {
   color: #777;
 }
-
-/* 휴대폰 */
 
 @media (max-width: 600px) {
 
@@ -212,7 +190,6 @@ header h1 {
 
 </head>
 
-
 <body>
 
 <header>
@@ -233,10 +210,7 @@ header h1 {
 
 </header>
 
-
 <main class="container">
-
-  <!-- 장 목록 -->
 
   <section id="list" class="card">
 
@@ -248,9 +222,6 @@ header h1 {
 
   </section>
 
-
-  <!-- 장 내용 -->
-
   <section id="reading">
 
     <button
@@ -261,7 +232,6 @@ header h1 {
       ← 장 목록으로
     </button>
 
-
     <div class="card">
 
       <div
@@ -269,11 +239,9 @@ header h1 {
         class="chapter-title"
       ></div>
 
-
       <div class="section-title">
         💬 목사님 설명
       </div>
-
 
       <div
         id="pastorText"
@@ -290,7 +258,6 @@ header h1 {
 
 </main>
 
-
 <script type="module">
 
 import {
@@ -304,24 +271,18 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 
-/* Firebase */
-
 const firebaseConfig = {
-  apiKey: "AIzaSyCSDusP0m2Mbg2wNg7r6duA_T5stDH7YKU",
+  apiKey: "AIzaSyCSDusP0m2Bbg2wNg7r6duA_T5stDH7YKU",
   authDomain: "manjong-genesis.firebaseapp.com",
   projectId: "manjong-genesis",
   storageBucket: "manjong-genesis.firebasestorage.app",
   messagingSenderId: "1017583422703",
-  appId: "1:1017583422703:web:6c7d1ebec3850a8b92df1a"
+  appId: "1:1017583422703:web:6c7d1ebec3850a8b92df1"
 };
-
 
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
-
-
-/* 화면 */
 
 const list =
   document.getElementById("list");
@@ -341,8 +302,6 @@ const pastorText =
 const backBtn =
   document.getElementById("backBtn");
 
-
-/* 창세기 1~50장 */
 
 for (let i = 1; i <= 50; i++) {
 
@@ -368,8 +327,6 @@ for (let i = 1; i <= 50; i++) {
 }
 
 
-/* 장 열기 */
-
 async function openChapter(chapterNumber) {
 
   list.style.display = "none";
@@ -384,7 +341,6 @@ async function openChapter(chapterNumber) {
 
   window.scrollTo(0, 0);
 
-
   try {
 
     const chapterRef =
@@ -397,41 +353,29 @@ async function openChapter(chapterNumber) {
     const snapshot =
       await getDoc(chapterRef);
 
-
     if (snapshot.exists()) {
 
       const data =
         snapshot.data();
-
-
-      /* 새 관리자 형식 */
 
       if (data.pastorText) {
 
         pastorText.textContent =
           data.pastorText;
 
-      }
-
-      /* 예전에 저장한 설명도 표시 */
-
-      else if (data.text) {
+      } else if (data.text) {
 
         pastorText.textContent =
           data.text;
 
-      }
-
-      else {
+      } else {
 
         pastorText.innerHTML =
           '<span class="empty">아직 목사님의 설명이 입력되지 않았습니다.</span>';
 
       }
 
-    }
-
-    else {
+    } else {
 
       pastorText.innerHTML =
         '<span class="empty">아직 목사님의 설명이 입력되지 않았습니다.</span>';
@@ -451,8 +395,6 @@ async function openChapter(chapterNumber) {
 
 }
 
-
-/* 장 목록으로 돌아가기 */
 
 backBtn.addEventListener(
   "click",
