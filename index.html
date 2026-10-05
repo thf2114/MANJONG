@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>만종감리교회 - 오늘의 창세기</title>
 
@@ -27,14 +27,13 @@ body {
   line-height: 1.8;
 }
 
-
 /* 상단 */
 
 header {
   background: #5d6f52;
   color: white;
   text-align: center;
-  padding: 38px 20px 34px;
+  padding: 38px 20px;
 }
 
 header h1 {
@@ -43,26 +42,25 @@ header h1 {
   line-height: 1.4;
 }
 
-header .verse {
-  margin-top: 22px;
+.verse {
+  margin-top: 25px;
   font-size: 24px;
   line-height: 1.8;
+  font-weight: 500;
 }
 
-header .reference {
+.reference {
   margin-top: 8px;
   font-size: 20px;
 }
-
 
 /* 전체 */
 
 .container {
   max-width: 850px;
-  margin: auto;
-  padding: 32px 20px 60px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
 }
-
 
 /* 카드 */
 
@@ -71,37 +69,34 @@ header .reference {
   border-radius: 20px;
   padding: 30px;
   margin-bottom: 25px;
-  box-shadow: 0 2px 10px #0001;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
-
 
 /* 제목 */
 
 .list-title {
+  text-align: center;
   font-size: 32px;
   font-weight: 900;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 28px;
+  margin: 0 0 28px;
 }
-
 
 /* 장 목록 */
 
 #chapterList {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 13px;
+  gap: 14px;
 }
 
 .chapter-btn {
-  background: #e7eadf;
   border: none;
-  border-radius: 13px;
-  padding: 18px 7px;
+  border-radius: 14px;
+  background: #e7eadf;
+  color: #222;
+  padding: 18px 5px;
   font-size: 24px;
   font-weight: 900;
-  color: #222;
   cursor: pointer;
 }
 
@@ -109,27 +104,25 @@ header .reference {
   transform: scale(0.97);
 }
 
-
 /* 읽기 화면 */
 
 #reading {
   display: none;
 }
 
-
-/* 장 목록 버튼 */
+/* 장 목록으로 */
 
 .back-btn {
-  background: #e5e5e5;
   border: none;
-  border-radius: 13px;
+  border-radius: 14px;
+  background: #e5e5e5;
+  color: #222;
   padding: 16px 22px;
   margin-bottom: 25px;
   font-size: 23px;
   font-weight: 900;
   cursor: pointer;
 }
-
 
 /* 장 제목 */
 
@@ -139,8 +132,7 @@ header .reference {
   margin-bottom: 25px;
 }
 
-
-/* 설명 제목 */
+/* 목사님 설명 */
 
 .section-title {
   font-size: 30px;
@@ -148,23 +140,18 @@ header .reference {
   margin-bottom: 18px;
 }
 
-
-/* 목사님 설명 */
-
 .content {
   white-space: pre-wrap;
+  word-break: keep-all;
   font-size: 25px;
   line-height: 2;
-  word-break: keep-all;
 }
 
-
-/* 설명 없음 */
+/* 설명이 없을 때 */
 
 .empty {
   color: #777;
 }
-
 
 /* 휴대폰 */
 
@@ -182,11 +169,11 @@ header .reference {
     font-size: 34px;
   }
 
-  header .verse {
+  .verse {
     font-size: 21px;
   }
 
-  header .reference {
+  .reference {
     font-size: 18px;
   }
 
@@ -219,7 +206,6 @@ header .reference {
   .content {
     font-size: 23px;
   }
-
 }
 
 </style>
@@ -229,7 +215,6 @@ header .reference {
 
 <body>
 
-
 <header>
 
   <h1>
@@ -238,8 +223,8 @@ header .reference {
   </h1>
 
   <div class="verse">
-    “주의 말씀은 내 발에 등이요<br>
-    내 길에 빛이니이다.”
+    주의 말씀은 내 발에 등이요<br>
+    내 길에 빛이니이다.
   </div>
 
   <div class="reference">
@@ -249,121 +234,91 @@ header .reference {
 </header>
 
 
-
 <main class="container">
 
+  <!-- 장 목록 -->
 
-<!-- 장 목록 -->
+  <section id="list" class="card">
 
-<section
-  id="list"
-  class="card"
->
+    <h2 class="list-title">
+      창세기 읽기
+    </h2>
 
-  <h2 class="list-title">
-    창세기 읽기
-  </h2>
+    <div id="chapterList"></div>
 
-  <div id="chapterList"></div>
-
-</section>
+  </section>
 
 
+  <!-- 장 내용 -->
 
-<!-- 장 내용 -->
+  <section id="reading">
 
-<section id="reading">
-
-
-  <button
-    class="back-btn"
-    id="backBtn"
-  >
-    ← 장 목록으로
-  </button>
-
-
-  <div class="card">
-
-    <div
-      id="chapterTitle"
-      class="chapter-title"
-    ></div>
-
-
-    <div class="section-title">
-      💬 목사님 설명
-    </div>
-
-
-    <div
-      id="pastorText"
-      class="content"
+    <button
+      id="backBtn"
+      class="back-btn"
+      type="button"
     >
-      <span class="empty">
-        아직 목사님 설명이 입력되지 않았습니다.
-      </span>
+      ← 장 목록으로
+    </button>
+
+
+    <div class="card">
+
+      <div
+        id="chapterTitle"
+        class="chapter-title"
+      ></div>
+
+
+      <div class="section-title">
+        💬 목사님 설명
+      </div>
+
+
+      <div
+        id="pastorText"
+        class="content"
+      >
+        <span class="empty">
+          아직 목사님 설명이 입력되지 않았습니다.
+        </span>
+      </div>
+
     </div>
 
-  </div>
-
-
-</section>
-
+  </section>
 
 </main>
 
 
-
 <script type="module">
-
 
 import {
   initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
 import {
   getFirestore,
   doc,
   getDoc
-}
-from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 
 /* Firebase */
 
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyCSDusP0m2Mbg2wNg7r6duA_T5stDH7YKU",
-
-  authDomain:
-    "manjong-genesis.firebaseapp.com",
-
-  projectId:
-    "manjong-genesis",
-
-  storageBucket:
-    "manjong-genesis.firebasestorage.app",
-
-  messagingSenderId:
-    "1017583422703",
-
-  appId:
-    "1:1017583422703:web:6c7d1ebec3850a8b92df1a"
-
+  apiKey: "AIzaSyCSDusP0m2Mbg2wNg7r6duA_T5stDH7YKU",
+  authDomain: "manjong-genesis.firebaseapp.com",
+  projectId: "manjong-genesis",
+  storageBucket: "manjong-genesis.firebasestorage.app",
+  messagingSenderId: "1017583422703",
+  appId: "1:1017583422703:web:6c7d1ebec3850a8b92df1a"
 };
 
 
-const app =
-  initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const db =
-  getFirestore(app);
+const db = getFirestore(app);
 
 
 /* 화면 */
@@ -389,107 +344,108 @@ const backBtn =
 
 /* 창세기 1~50장 */
 
-for (
-  let i = 1;
-  i <= 50;
-  i++
-) {
+for (let i = 1; i <= 50; i++) {
 
   const button =
     document.createElement("button");
+
+  button.type = "button";
 
   button.className =
     "chapter-btn";
 
   button.textContent =
-    i + "장";
+    "창세기 " + i + "장";
 
   button.addEventListener(
     "click",
-    () => openChapter(i)
+    function() {
+      openChapter(i);
+    }
   );
 
   chapterList.appendChild(button);
-
 }
 
 
 /* 장 열기 */
 
-async function openChapter(chapter) {
+async function openChapter(chapterNumber) {
 
-  list.style.display =
-    "none";
+  list.style.display = "none";
 
-  reading.style.display =
-    "block";
-
+  reading.style.display = "block";
 
   chapterTitle.textContent =
-    "창세기 " + chapter + "장";
-
+    "창세기 " + chapterNumber + "장";
 
   pastorText.innerHTML =
     '<span class="empty">불러오는 중...</span>';
-
 
   window.scrollTo(0, 0);
 
 
   try {
 
-    const ref =
+    const chapterRef =
       doc(
         db,
         "pastorExplanations",
-        String(chapter)
+        String(chapterNumber)
       );
 
+    const snapshot =
+      await getDoc(chapterRef);
 
-    const snap =
-      await getDoc(ref);
 
-
-    if (snap.exists()) {
+    if (snapshot.exists()) {
 
       const data =
-        snap.data();
+        snapshot.data();
 
+
+      /* 새 관리자 형식 */
 
       if (data.pastorText) {
 
         pastorText.textContent =
           data.pastorText;
 
-      } else if (data.text) {
+      }
 
-        /* 기존에 저장된 설명도 읽을 수 있게 함 */
+      /* 예전에 저장한 설명도 표시 */
+
+      else if (data.text) {
 
         pastorText.textContent =
           data.text;
 
-      } else {
+      }
+
+      else {
 
         pastorText.innerHTML =
           '<span class="empty">아직 목사님의 설명이 입력되지 않았습니다.</span>';
 
       }
 
+    }
 
-    } else {
+    else {
 
       pastorText.innerHTML =
         '<span class="empty">아직 목사님의 설명이 입력되지 않았습니다.</span>';
 
     }
 
+  }
 
-  } catch (error) {
+  catch (error) {
+
+    console.error(error);
 
     pastorText.innerHTML =
       '<span class="empty">설명을 불러오지 못했습니다.</span>';
-
-    console.error(error);
 
   }
 
@@ -500,7 +456,7 @@ async function openChapter(chapter) {
 
 backBtn.addEventListener(
   "click",
-  () => {
+  function() {
 
     reading.style.display =
       "none";
@@ -513,9 +469,7 @@ backBtn.addEventListener(
   }
 );
 
-
 </script>
-
 
 </body>
 
