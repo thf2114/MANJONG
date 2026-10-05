@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>만종감리교회 - 목사님 관리자</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f5ef;color:#222;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:20px;line-height:1.7}
+header{background:#5d6f52;color:#fff;text-align:center;padding:24px 18px}h1{font-size:31px;margin:0}.container{max-width:700px;margin:auto;padding:25px 18px 50px}
+.card{background:#fff;border-radius:16px;padding:24px;margin:16px 0;box-shadow:0 2px 9px #0001}label{font-weight:800;display:block;margin:12px 0 7px}
+input,select,textarea{width:100%;padding:14px;border:1px solid #bbb;border-radius:10px;font:inherit}textarea{min-height:240px;resize:vertical}
+button{border:0;border-radius:10px;padding:13px 20px;font-size:19px;font-weight:800;cursor:pointer}.primary{background:#5d6f52;color:#fff;margin-top:14px}.secondary{background:#e4e8df;margin-top:10px}.error{color:#a33;font-size:17px}.ok{color:#49623f;font-weight:700}.hidden{display:none}.small{font-size:15px;color:#666}
+</style>
+</head>
+<body>
+<header><h1>만종감리교회<br>목사님 관리자</h1></header>
+<main class="container">
+
+<section id="loginCard" class="card">
+<h2>관리자 로그인</h2>
+<label>이메일</label>
+<input id="email" type="email" autocomplete="username">
+<label>비밀번호</label>
+<input id="password" type="password" autocomplete="current-password">
+<button class="primary" id="loginBtn">로그인</button>
+<p id="loginMsg" class="error"></p>
+</section>
+
+<section id="adminCard" class="card hidden">
+<h2>목사님 설명 입력</h2>
+<label>창세기 장</label>
+<select id="chapter"></select>
+<label>목사님 설명</label>
+<textarea id="text" placeholder="선택한 장의 목사님 설명을 입력해 주세요."></textarea>
+<button class="primary" id="saveBtn">저장하기</button>
+<button class="secondary" id="logoutBtn">로그아웃</button>
+<p id="status"></p>
+<p class="small">저장하면 성도님용 페이지에서 해당 장을 열 때 바로 표시됩니다.</p>
+</section>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCSDusP0m2Mbg2wNg7r6rduA_T5stDH7YKU",
+  authDomain: "manjong-genesis.firebaseapp.com",
+  projectId: "manjong-genesis",
+  storageBucket: "manjong-genesis.firebasestorage.app",
+  messagingSenderId: "1017583422703",
+  appId: "1:1017583422703:web:6c7d1ebec3850a8b92df1a"
+};
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+const loginCard=document.getElementById("loginCard");
+const adminCard=document.getElementById("adminCard");
+const chapter=document.getElementById("chapter");
+const text=document.getElementById("text");
+const loginMsg=document.getElementById("loginMsg");
+const status=document.getElementById("status");
+
+for(let i=1;i<=50;i++){
+  const o=document.createElement("option");o.value=i;o.textContent="창세기 "+i+"장";chapter.appendChild(o);
+}
+
+async function loadText(){
+  const snap=await getDoc(doc(db,"pastorExplanations",chapter.value));
+  text.value=snap.exists() ? (snap.data().text || "") : "";
+  status.textContent="";
+}
+chapter.addEventListener("change",loadText);
+
+document.getElementById("loginBtn").onclick=async()=>{
+  loginMsg.textContent="";
+  try{
+    await signInWithEmailAndPassword(auth,document.getElementById("email").value,document.getElementById("password").value);
+  }catch(e){
+    loginMsg.textContent="이메일 또는 비밀번호를 확인해 주세요.";
+  }
+};
+
+document.getElementById("saveBtn").onclick=async()=>{
+  const value=text.value.trim();
+  if(!value){status.className="error";status.textContent="설명을 입력해 주세요.";return}
+  try{
+    await setDoc(doc(db,"pastorExplanations",chapter.value),{text:value,updatedAt:serverTimestamp()});
+    status.className="ok";status.textContent=chapter.value+"장 설명이 저장되었습니다.";
+  }catch(e){
+    status.className="error";status.textContent="저장하지 못했습니다. Firebase 보안 규칙을 확인해 주세요.";
+  }
+};
+
+document.getElementById("logoutBtn").onclick=()=>signOut(auth);
+
+onAuthStateChanged(auth,async(user)=>{
+  if(user){
+    loginCard.classList.add("hidden");
+    adminCard.classList.remove("hidden");
+    await loadText();
+  }else{
+    loginCard.classList.remove("hidden");
+    adminCard.classList.add("hidden");
+  }
+});
+</script>
+</body>
+</html>
