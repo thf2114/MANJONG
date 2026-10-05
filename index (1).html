@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>만종감리교회 - 오늘의 창세기</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;background:#f7f5ef;color:#222;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  font-size:20px;line-height:1.8;
+}
+header{
+  background:#5d6f52;color:white;padding:28px 20px 24px;text-align:center;
+}
+.church{font-size:20px;font-weight:700;margin-bottom:4px}
+h1{font-size:34px;margin:0 0 10px}
+.verse{font-size:21px;line-height:1.55}
+.verse-ref{font-size:18px;opacity:.9}
+.container{max-width:900px;margin:0 auto;padding:24px 18px 50px}
+.section-title{font-size:25px;font-weight:800;margin:22px 0 14px}
+.chapters{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:10px;
+}
+.chapter-btn{
+  border:0;border-radius:12px;background:white;padding:15px 5px;
+  font-size:21px;font-weight:800;color:#3f5038;
+  box-shadow:0 2px 7px rgba(0,0,0,.10);cursor:pointer;
+}
+.chapter-btn:active{transform:scale(.98)}
+.hidden{display:none}
+.back{
+  border:0;background:#e5e9df;border-radius:10px;padding:12px 17px;
+  font-size:19px;font-weight:700;margin-bottom:16px;cursor:pointer;
+}
+.card{
+  background:white;border-radius:16px;padding:24px 22px;margin:14px 0;
+  box-shadow:0 2px 9px rgba(0,0,0,.08);
+}
+.card h2{font-size:27px;margin:0 0 16px;color:#4e6145}
+.bible-text{
+  white-space:pre-wrap;font-size:22px;line-height:2.05;
+}
+.pastor-text{
+  white-space:pre-wrap;font-size:22px;line-height:2.0;
+}
+.empty{
+  color:#777;background:#fafafa;border-radius:10px;padding:18px;
+}
+.admin{
+  margin-top:30px;background:#eef1ea;border-radius:16px;padding:20px;
+}
+input,textarea{
+  width:100%;padding:14px;border:1px solid #c9cec4;border-radius:10px;
+  font:inherit;background:white;
+}
+textarea{min-height:180px;resize:vertical}
+.admin button{
+  margin-top:10px;border:0;border-radius:10px;padding:13px 18px;
+  font-size:19px;font-weight:800;background:#5d6f52;color:white;cursor:pointer;
+}
+.note{font-size:16px;color:#666;margin-top:10px}
+@media(max-width:600px){
+  body{font-size:19px}
+  h1{font-size:30px}
+  .chapters{grid-template-columns:repeat(4,1fr)}
+  .chapter-btn{font-size:20px;padding:14px 2px}
+  .bible-text,.pastor-text{font-size:21px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="church">만종감리교회</div>
+  <h1>오늘의 창세기</h1>
+  <div class="verse">
+    “주의 말씀은 내 발에 등이요 내 길에 빛이니이다”<br>
+    <span class="verse-ref">시편 119편 105절</span>
+  </div>
+</header>
+
+<main class="container">
+  <div id="home">
+    <div class="section-title">창세기 말씀 읽기</div>
+    <div class="chapters" id="chapterButtons"></div>
+  </div>
+
+  <div id="chapterView" class="hidden">
+    <button class="back" onclick="goHome()">← 창세기 목록으로</button>
+    <h2 id="chapterTitle"></h2>
+
+    <section class="card">
+      <h2>📖 말씀 읽기</h2>
+      <div id="bibleText" class="bible-text empty">
+        이 장의 개역개정 말씀을 교회에서 사용하실 수 있는 정식 원문으로 입력해 주세요.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>💬 목사님 설명</h2>
+      <div id="pastorText" class="pastor-text empty">
+        아직 목사님 설명이 등록되지 않았습니다.
+      </div>
+    </section>
+  </div>
+
+  <section class="admin">
+    <div class="section-title">목사님 설명 입력</div>
+    <label>장 번호</label>
+    <input id="adminChapter" type="number" min="1" max="50" placeholder="예: 1">
+    <br><br>
+    <label>목사님 설명</label>
+    <textarea id="adminExplanation" placeholder="해당 장의 목사님 설명을 입력해 주세요."></textarea>
+    <button onclick="saveExplanation()">저장하기</button>
+    <div class="note">※ 설명은 이 기기에서 저장됩니다. 여러 휴대폰에서 함께 보이게 하려면 온라인 데이터베이스 연결이 필요합니다.</div>
+  </section>
+</main>
+
+<script>
+const chapters = Array.from({length:50},(_,i)=>i+1);
+const explanations = JSON.parse(localStorage.getItem("pastorExplanations") || "{}");
+
+/*
+  개역개정 본문은 저작권이 있는 번역본이므로 이 프로토타입에 전문을 내장하지 않았습니다.
+  교회에서 사용 권한이 있는 원문을 아래 객체에 장별로 넣으면 바로 표시됩니다.
+*/
+const bibleText = JSON.parse(localStorage.getItem("bibleText") || "{}");
+
+function renderButtons(){
+  const box=document.getElementById("chapterButtons");
+  box.innerHTML="";
+  chapters.forEach(n=>{
+    const b=document.createElement("button");
+    b.className="chapter-btn";
+    b.textContent=n+"장";
+    b.onclick=()=>openChapter(n);
+    box.appendChild(b);
+  });
+}
+
+function openChapter(n){
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("chapterView").classList.remove("hidden");
+  document.getElementById("chapterTitle").textContent="창세기 "+n+"장";
+
+  const bible=document.getElementById("bibleText");
+  bible.textContent=bibleText[n] || "이 장의 개역개정 말씀을 교회에서 사용하실 수 있는 정식 원문으로 입력해 주세요.";
+  bible.classList.toggle("empty",!bibleText[n]);
+
+  const pastor=document.getElementById("pastorText");
+  pastor.textContent=explanations[n] || "아직 목사님 설명이 등록되지 않았습니다.";
+  pastor.classList.toggle("empty",!explanations[n]);
+}
+
+function goHome(){
+  document.getElementById("chapterView").classList.add("hidden");
+  document.getElementById("home").classList.remove("hidden");
+}
+
+function saveExplanation(){
+  const n=Number(document.getElementById("adminChapter").value);
+  const text=document.getElementById("adminExplanation").value.trim();
+  if(!n || n<1 || n>50){alert("1장부터 50장까지 입력해 주세요.");return}
+  if(!text){alert("목사님 설명을 입력해 주세요.");return}
+  explanations[n]=text;
+  localStorage.setItem("pastorExplanations",JSON.stringify(explanations));
+  alert(n+"장 목사님 설명이 저장되었습니다.");
+  openChapter(n);
+}
+
+renderButtons();
+</script>
+</body>
+</html>
