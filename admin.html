@@ -8,7 +8,6 @@
 <title>오늘의 창세기 - 관리자</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -17,12 +16,8 @@ body {
   margin: 0;
   background: #f7f5ef;
   color: #222;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Apple SD Gothic Neo",
-    "Noto Sans KR",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 
 .container {
@@ -54,9 +49,13 @@ body {
 
 label {
   display: block;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 900;
-  margin-bottom: 12px;
+  margin: 25px 0 10px;
+}
+
+label:first-child {
+  margin-top: 0;
 }
 
 select {
@@ -65,19 +64,18 @@ select {
   border: 2px solid #ddd;
   border-radius: 12px;
   background: white;
-  font-size: 22px;
-  margin-bottom: 30px;
+  font-size: 21px;
 }
 
 textarea {
   width: 100%;
-  min-height: 400px;
+  min-height: 260px;
   padding: 18px;
   border: 2px solid #ddd;
   border-radius: 12px;
   resize: vertical;
   font-family: inherit;
-  font-size: 21px;
+  font-size: 19px;
   line-height: 1.8;
 }
 
@@ -89,30 +87,26 @@ select:focus {
 
 .save-btn {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 28px;
   padding: 18px;
   border: none;
   border-radius: 14px;
   background: #5d6f52;
   color: white;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 900;
   cursor: pointer;
-}
-
-.save-btn:active {
-  transform: scale(0.98);
 }
 
 .status {
   text-align: center;
   margin-top: 18px;
-  font-size: 18px;
+  font-size: 19px;
+  font-weight: 700;
   min-height: 30px;
 }
 
 @media (max-width: 600px) {
-
   .container {
     padding: 20px 14px 40px;
   }
@@ -129,130 +123,57 @@ select:focus {
     font-size: 21px;
   }
 
-  select {
-    font-size: 20px;
-  }
-
   textarea {
-    font-size: 19px;
-    min-height: 350px;
+    min-height: 230px;
+    font-size: 18px;
   }
-
-  .save-btn {
-    font-size: 21px;
-  }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
 <div class="container">
 
   <div class="header">
-
     <h1>
       만종감리교회<br>
       오늘의 창세기 관리자
     </h1>
-
   </div>
-
 
   <div class="card">
 
-    <label for="chapter">
-      창세기 장 선택
-    </label>
+    <label for="chapter">창세기 장 선택</label>
+    <select id="chapter"></select>
 
-    <select id="chapter">
+    <label for="bibleText">📖 말씀</label>
 
-      <option value="1">창세기 1장</option>
-      <option value="2">창세기 2장</option>
-      <option value="3">창세기 3장</option>
-      <option value="4">창세기 4장</option>
-      <option value="5">창세기 5장</option>
-      <option value="6">창세기 6장</option>
-      <option value="7">창세기 7장</option>
-      <option value="8">창세기 8장</option>
-      <option value="9">창세기 9장</option>
-      <option value="10">창세기 10장</option>
-      <option value="11">창세기 11장</option>
-      <option value="12">창세기 12장</option>
-      <option value="13">창세기 13장</option>
-      <option value="14">창세기 14장</option>
-      <option value="15">창세기 15장</option>
-      <option value="16">창세기 16장</option>
-      <option value="17">창세기 17장</option>
-      <option value="18">창세기 18장</option>
-      <option value="19">창세기 19장</option>
-      <option value="20">창세기 20장</option>
-      <option value="21">창세기 21장</option>
-      <option value="22">창세기 22장</option>
-      <option value="23">창세기 23장</option>
-      <option value="24">창세기 24장</option>
-      <option value="25">창세기 25장</option>
-      <option value="26">창세기 26장</option>
-      <option value="27">창세기 27장</option>
-      <option value="28">창세기 28장</option>
-      <option value="29">창세기 29장</option>
-      <option value="30">창세기 30장</option>
-      <option value="31">창세기 31장</option>
-      <option value="32">창세기 32장</option>
-      <option value="33">창세기 33장</option>
-      <option value="34">창세기 34장</option>
-      <option value="35">창세기 35장</option>
-      <option value="36">창세기 36장</option>
-      <option value="37">창세기 37장</option>
-      <option value="38">창세기 38장</option>
-      <option value="39">창세기 39장</option>
-      <option value="40">창세기 40장</option>
-      <option value="41">창세기 41장</option>
-      <option value="42">창세기 42장</option>
-      <option value="43">창세기 43장</option>
-      <option value="44">창세기 44장</option>
-      <option value="45">창세기 45장</option>
-      <option value="46">창세기 46장</option>
-      <option value="47">창세기 47장</option>
-      <option value="48">창세기 48장</option>
-      <option value="49">창세기 49장</option>
-      <option value="50">창세기 50장</option>
+    <textarea
+      id="bibleText"
+      placeholder="해당 장의 말씀을 입력하세요."
+    ></textarea>
 
-    </select>
-
-
-    <label for="pastorText">
-      💬 목사님 설명
-    </label>
+    <label for="pastorText">💬 목사님 설명</label>
 
     <textarea
       id="pastorText"
-      placeholder="선택한 장의 목사님 설명을 입력하세요."
+      placeholder="목사님 설명을 입력하세요."
     ></textarea>
-
 
     <button
       id="saveBtn"
       class="save-btn"
       type="button"
     >
-      저장하기
+      말씀 + 목사님 설명 저장하기
     </button>
 
-
-    <div
-      id="status"
-      class="status"
-    ></div>
+    <div id="status" class="status"></div>
 
   </div>
 
 </div>
-
 
 <script type="module">
 
@@ -268,43 +189,25 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 
-/* Firebase */
-
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyCSDusP0m2Bbg2wNg7r6duA_T5stDH7YKU",
-
-  authDomain:
-    "manjong-genesis.firebaseapp.com",
-
-  projectId:
-    "manjong-genesis",
-
-  storageBucket:
-    "manjong-genesis.firebasestorage.app",
-
-  messagingSenderId:
-    "1017583422703",
-
-  appId:
-    "1:1017583422703:web:6c7d1ebec3850a8b92df1"
-
+  apiKey: "AIzaSyCSDusP0m2Bbg2wNg7r6duA_T5stDH7YKU",
+  authDomain: "manjong-genesis.firebaseapp.com",
+  projectId: "manjong-genesis",
+  storageBucket: "manjong-genesis.firebasestorage.app",
+  messagingSenderId: "1017583422703",
+  appId: "1:1017583422703:web:6c7d1ebec3850a8b92df1"
 };
 
 
-const app =
-  initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-
-const db =
-  getFirestore(app);
-
-
-/* 화면 */
 
 const chapter =
   document.getElementById("chapter");
+
+const bibleText =
+  document.getElementById("bibleText");
 
 const pastorText =
   document.getElementById("pastorText");
@@ -316,18 +219,28 @@ const status =
   document.getElementById("status");
 
 
-/* 설명 불러오기 */
+/* 1~50장 자동 생성 */
 
-async function loadExplanation() {
+for (let i = 1; i <= 50; i++) {
 
-  const chapterNumber =
-    chapter.value;
+  const option =
+    document.createElement("option");
 
+  option.value = i;
+  option.textContent = "창세기 " + i + "장";
+
+  chapter.appendChild(option);
+}
+
+
+/* 저장되어 있는 말씀과 설명 불러오기 */
+
+async function loadChapter() {
+
+  bibleText.value = "";
   pastorText.value = "";
 
-  status.textContent =
-    "불러오는 중...";
-
+  status.textContent = "불러오는 중...";
 
   try {
 
@@ -335,36 +248,22 @@ async function loadExplanation() {
       doc(
         db,
         "pastorExplanations",
-        String(chapterNumber)
+        String(chapter.value)
       );
-
 
     const snapshot =
       await getDoc(chapterRef);
 
-
     if (snapshot.exists()) {
 
-      const data =
-        snapshot.data();
+      const data = snapshot.data();
 
+      bibleText.value =
+        data.bibleText || "";
 
-      if (data.pastorText) {
-
-        pastorText.value =
-          data.pastorText;
-
-      }
-
-      else if (data.text) {
-
-        pastorText.value =
-          data.text;
-
-      }
-
+      pastorText.value =
+        data.pastorText || data.text || "";
     }
-
 
     status.textContent = "";
 
@@ -375,61 +274,47 @@ async function loadExplanation() {
     console.error(error);
 
     status.textContent =
-      "설명을 불러오지 못했습니다.";
-
+      "내용을 불러오지 못했습니다.";
   }
-
 }
 
 
-/* 장 선택 */
-
 chapter.addEventListener(
   "change",
-  loadExplanation
+  loadChapter
 );
 
 
-/* 저장 */
+/* 저장하기 */
 
 saveBtn.addEventListener(
   "click",
   async function() {
 
-    const chapterNumber =
-      chapter.value;
-
-    const text =
-      pastorText.value;
-
-
     saveBtn.disabled = true;
-
-    saveBtn.textContent =
-      "저장 중...";
+    saveBtn.textContent = "저장 중...";
 
     status.textContent = "";
-
 
     try {
 
       await setDoc(
-
         doc(
           db,
           "pastorExplanations",
-          String(chapterNumber)
+          String(chapter.value)
         ),
-
         {
-          pastorText: text
+          bibleText: bibleText.value,
+          pastorText: pastorText.value
+        },
+        {
+          merge: true
         }
-
       );
 
-
       status.textContent =
-        "✓ 저장되었습니다.";
+        "✓ 말씀과 목사님 설명이 저장되었습니다.";
 
     }
 
@@ -439,26 +324,19 @@ saveBtn.addEventListener(
 
       status.textContent =
         "저장에 실패했습니다.";
-
     }
-
 
     saveBtn.disabled = false;
 
     saveBtn.textContent =
-      "저장하기";
-
+      "말씀 + 목사님 설명 저장하기";
   }
-
 );
 
 
-/* 처음 실행 */
-
-loadExplanation();
+loadChapter();
 
 </script>
 
 </body>
-
 </html>
